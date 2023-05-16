@@ -15,8 +15,10 @@ class UserController:
         username = data['username']
         password = data['password']
         user = await self.user_model.authenticate_user(username, password)
+        print(user)
         if user:
             session_id = await self.user_model.create_session(username)
+            print(session_id)
             return web.json_response({'session_id': session_id, 'name': user['name'], 'profil': user['profil']})
         else:
             return web.HTTPUnauthorized()

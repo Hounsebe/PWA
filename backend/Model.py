@@ -7,6 +7,7 @@ from aiohttp import web
 class UserModel:
     def __init__(self, db_pool):
         self.db_pool = db_pool
+        self.sessions = {}
 
     async def authenticate_user(self, username, password):
         async with self.db_pool.acquire() as conn:
@@ -16,10 +17,13 @@ class UserModel:
                 await cur.execute(query, (username, password))
 
                 result = await cur.fetchone()
+
         if result:
             session_id = str(uuid4())
             self.sessions[session_id] = username
-            return web.json_response({'session_id': session_id, 'name': result[1] + ' ' + result[2], 'profil': result[3]})
+            user = {'session_id': session_id,
+                    'name': result[1] + ' ' + result[2], 'profil': result[3]}
+            return user
         else:
             return None
 
