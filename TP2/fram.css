@@ -1,0 +1,167 @@
+body {
+    width: 100%;
+  }
+  .header__container {
+    display: grid;
+    width: 100%;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 0.2fr 1.5fr 1.2fr 0.8fr;
+    grid-template-areas:
+      "nav nav nav nav"
+      "sidebar main main footer"
+      "sidebar main main footer"
+      "sidebar  main main footer";
+  }
+  nav {
+    background-color: rgb(255, 255, 255);
+    grid-area: nav;
+    padding-left: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    display: flex;
+  }
+  nav > .header__container__left {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  nav > .header__container__left > img {
+    width: 50px;
+    filter: invert(48%) sepia(79%) saturate(2476%) hue-rotate(86deg)
+      brightness(118%) contrast(119%);
+  }
+  nav > .header__container__left > .header__container__left__contentInput {
+    margin-left: 10px;
+    margin-right: 10px;
+    border-radius: 20px;
+    background-color: azure;
+    padding: 5px;
+    display: flex;
+  }
+  nav > .header__container__left > .header__container__left__contentInput > input {
+    border: none;
+    border-radius: 20px;
+    padding: 10px;
+    background-color: azure;
+  }
+  input:focus {
+    outline: none;
+  }
+  nav > .header__container__left > .header__container__left__contentInput > img {
+    border: none;
+    width: 40px;
+  }
+  nav > .header__center {
+    width: 500px;
+    display: flex;
+    justify-content: center;
+  }
+  nav > .header__center > .header__center__home {
+    border-bottom: rgb(13, 245, 24) 6px solid;
+    padding: 12px;
+    width: 60px;
+    text-align: center;
+  }
+  nav > .header__center > .header__center__home:hover {
+    background-color: rgb(3, 190, 118);
+    cursor: pointer;
+  }
+  nav > .header__center > .header__center__ami {
+    padding: 12px;
+    text-align: center;
+    width: 60px;
+  }
+  nav > .header__center > .header__center__ami:hover {
+    cursor: pointer;
+  }
+  nav > .header__center > .header__center__groupe {
+    padding: 12px;
+    text-align: center;
+  }
+  nav > .header__center > .header__center__groupe:hover {
+    cursor: pointer;
+  }
+  
+  nav > .header__center > .header__center__home > img {
+    width: 30px;
+  
+    filter: invert(50%) sepia(7%) saturate(1000%) hue-rotate(86deg)
+      brightness(118%) contrast(119%);
+  }
+  nav > .header__center > .header__center__ami > img {
+    width: 30px;
+  
+    filter: invert(48%) sepia(79%) saturate(2476%) hue-rotate(86deg)
+      brightness(118%) contrast(119%);
+  }
+  nav > .header__center > .header__center__groupe > img {
+    width: 30px;
+  
+    filter: invert(48%) sepia(79%) saturate(2476%) hue-rotate(86deg)
+      brightness(118%) contrast(119%);
+  }
+  nav > .header__Right {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  nav > .header__Right > .header__Right__home {
+    background-color: aliceblue;
+    margin-left: 10px;
+    padding: 10px;
+    border-radius: 50px;
+  }
+  nav > .header__Right > .header__Right__contentInput {
+    background-color: rgb(204, 245, 231);
+    padding: 10px;
+    margin-left: 5px;
+    border-radius: 25px;
+  }
+  nav > .header__Right > .header__Right__contentInput > input {
+    background-color: rgb(204, 245, 231);
+    border: none;
+    font-size: 1rem;
+    width: 80px;
+  }
+  nav > .header__Right > .header__Right__home > .imga {
+    width: 30px;
+  
+    filter: invert(48%) sepia(79%) saturate(2476%) hue-rotate(86deg)
+      brightness(118%) contrast(119%);
+  }
+  nav > .header__Right > .header__Right__home > button {
+    background-color: aquamarine;
+    border: none;
+    border-radius: 30px;
+    padding: 10px;
+    width: 100px;
+    color: #ffffff;
+  }
+  nav > .header__Right > .header__Right__home > button:hover {
+    background-color: rgb(227, 255, 127);
+    color: black;
+  }
+  nav > .header__Right > .header__Right__home > span {
+    background-color: red;
+    font-size: 1.2em;
+    position: absolute;
+    margin-top: -6px;
+    margin-left: 15px;
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    border-radius: 15px;
+    color: #ffffff;
+  }
+  .profil {
+    width: 70px;
+    height: 70px;
+    border-radius: 70px;
+    margin: -10px;
+    object-fit: cover;
+    box-shadow: 1px 2px 0px 2px #f0f2f5;
+  }
+ 
+  @media screen and (max-width:px) {
+    
+  }
