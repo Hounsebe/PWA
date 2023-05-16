@@ -1,0 +1,123 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+.bgimg {
+  width: 100%;
+  height: 100vh;
+  background-image: linear-gradient(30deg, #004e95 50%, #005c94 50%);
+}
+.centerdiv {
+  width: 350px;
+  height: 400px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  background-color: #be64a9;
+  transform: translate(-50%, -50%);
+  background-image: linear-gradient(30deg, #005c94 50%, #004e95 50%);
+  box-shadow: 5px 5px 50px;
+}
+#pp {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  position: relative;
+  top: -10%;
+  left: calc((350px - 80px) / 2);
+}
+h2 {
+  text-align: center;
+  color: white;
+  text-transform: uppercase;
+  font-size: 2em;
+  word-spacing: 10px;
+  letter-spacing: 8px;
+  margin-top: -30px;
+  margin-bottom: 30px;
+  text-shadow: 2px 2px 1px #be695a;
+  transition: ease;
+  animation: text 3s 1;
+}
+
+@keyframes text {
+  0% {
+    color: #3498db;
+    letter-spacing: 13px;
+  }
+  30% {
+    color: #814157;
+  }
+  60% {
+    letter-spacing: -5px;
+    margin-border-bottom: 20px;
+  }
+}
+.ibx {
+  width: calc(100% - 40px);
+  height: 30px;
+  display: block;
+  margin: auto;
+  padding: 0 10px;
+  box-sizing: border-box;
+}
+::placeholder {
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: black;
+}
+.btn {
+  text-transform: uppercase;
+  width: calc(100% - 50px);
+  height: 30px;
+  display: block;
+  margin: auto;
+  color: white;
+  background-color: #af04e0;
+  border: none;
+  transition: all 0.3s ease;
+  overflow: hidden;
+  transition: 1s all ease;
+}
+.btn::before {
+  background-color: #00000079;
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: -1;
+  transition: all 0.6s ease;
+}
+.log::before {
+  width: 0;
+  height: 100%;
+  transform: translate(-50%, -50%);
+}
+.log:hover::before {
+  width: 100%;
+}
+
+.mpss {
+  width: calc(100% - 50px);
+  height: 30px;
+  display: block;
+  margin: auto;
+  color: white;
+  text-transform: uppercase;
+  font-size: 0.8em;
+  padding-right: 20px;
+  box-sizing: border-box;
+}
+h4 {
+  margin: 20px;
+  position: relative;
+  top: 30%;
+  left: 10%;
+}
+.account > H4 > a {
+  font-size: larger;
+  color: white;
+  text-decoration: none;
+  cursor: pointer;
+}

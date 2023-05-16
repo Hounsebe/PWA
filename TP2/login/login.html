@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <title>prototype login form</title>
+    <link rel="stylesheet" href="styledsgn.css" type="text/css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+  </head>
+
+  <body>
+    <div class="bgimg">
+      <div class="centerdiv">
+        <img src="user.png" id="pp" />
+        <h2>connexion</h2>
+        <form onsubmit="login(event)">
+          <div>
+            <input
+              type="text"
+              name=""
+              class="ibx"
+              id="username"
+              placeholder="nom utilisateur"
+            />
+          </div>
+          <br />
+          <div>
+            <input
+              type="password"
+              name=""
+              id="password"
+              class="ibx"
+              placeholder="mot de passe"
+            />
+          </div>
+          <br />
+          <div>
+            <button type="submit" class="btn log">connecter</button>
+          </div>
+        </form>
+        <br />
+        <div class="mpss">
+          <h4>mot de passe oublier ?</h4>
+        </div>
+        <div class="account">
+          <h4>
+            <a href="#">Cliquez pour crée un compte</a>
+          </h4>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script>
+    function login(e) {
+      e.preventDefault();
+      var username = document.getElementById("username").value;
+      var password = document.getElementById("password").value;
+
+      var data = {
+        username: username,
+        password: password,
+      };
+
+      const url = "http://127.0.0.1:8000/login";
+
+      fetch(url, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          // Traiter la réponse de la requête
+          console.log(data);
+        })
+        .catch((error) => {
+          // Gérer les erreurs de la requête
+          console.error("Erreur:", error);
+        });
+    }
+  </script>
+</html>
