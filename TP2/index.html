@@ -43,7 +43,13 @@
             <img src="./res/bells.svg" alt="" srcset="" class="imga" />
           </div>
           <div class="home">
-            <img src="./res/profil.jpg" alt="" srcset="" class="profil" />
+            <img
+              src="./res/profil.jpg"
+              alt=""
+              srcset=""
+              class="profil"
+              id="profil-picture"
+            />
           </div>
           <div class="home">
             <button onclick="logout()">Se Déconnecter</button>
@@ -63,7 +69,7 @@
           <div class="body">
             <div class="left">
               <div class="container">
-                <img src="./res/profil.jpg" alt="" />
+                <img src="./res/profil.jpg" alt="" id="profil-picture" />
                 <span>+</span>
                 <div class="end">
                   <span> Crée une Story </span>
@@ -90,30 +96,6 @@
           </div>
         </div>
 
-        <div class="element">
-          <div class="post-header">
-            <img src="https://i.ibb.co/88v2m6N/profil.jpg" />
-            <div class="end">user Name</div>
-          </div>
-          <div class="divider"></div>
-
-          <div class="post-body">
-            <p class="post-text">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odit
-              quod voluptates fuga aut quaerat debitis voluptate enim ad velit
-              maxime sequi quas accusantium, aliquid vel veritatis? Est fuga
-              rerum quis?
-            </p>
-
-            <img
-              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQWiKFGu30qaiE7y_qEsSOeh1AK3i-eLM564g&usqp=CAU"
-              class="post-image"
-            />
-          </div>
-          <div class="post-footer">
-            <div class="like">LIKE 4</div>
-          </div>
-        </div>
         <!-- </div>
          <div class="element"></div>
         <div class="element"></div>
@@ -125,7 +107,13 @@
         <div class="bodyItem">
           <div class="itemContent">
             <div class="item">
-              <img src="./res/profil.jpg" alt="" srcset="" class="profil" />
+              <img
+                src="./res/profil.jpg"
+                alt=""
+                srcset=""
+                class="profil"
+                id="profil-picture"
+              />
               <h3>Honorine HTH</h3>
             </div>
           </div>
@@ -230,6 +218,15 @@
     </div>
   </body>
   <script>
+    init();
+    function init() {
+      var userJSON = localStorage.getItem("logged");
+      var user = JSON.parse(userJSON);
+      const item = document.querySelectorAll("#profil-picture");
+      item.forEach((it) => {
+        it.src = user.profil;
+      });
+    }
     getFeeds();
     function getFeeds() {
       var userJSON = localStorage.getItem("logged");

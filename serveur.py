@@ -49,7 +49,6 @@ class FacebookServer:
                       await cur.execute(query, (username, password))
                       result = await cur.fetchone()
         if result:
-            print(result)
             session_id = str(uuid4())
             self.sessions[session_id] = username
             return web.json_response({'session_id': session_id,'name': result[1]+ ' '+ result[2], 'profil':result[3]})
