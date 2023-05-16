@@ -79,7 +79,7 @@ class FacebookServer:
         return web.json_response({'message': f'Welcome, {username}!'})
 
     async def feed(self, request: web.Request) -> web.Response:
-        data = await request.json()
+        data = request.query
         if 'session_id' not in data:
             return web.HTTPBadRequest()
 
@@ -95,7 +95,7 @@ class FacebookServer:
         feed = []
         for result in results:
             post = {
-                'username': result['username'],
+                'username': result['nom']+' '+result['prenom'],
                 'profil':result['profil'],
                 'text': result['text'],
                 'image': result['image'],
