@@ -53,6 +53,13 @@
     </div>
   </body>
   <script>
+    init();
+    function init() {
+      var userJSON = localStorage.getItem("logged");
+      if (userJSON) {
+        window.location.href = "../index.html";
+      }
+    }
     function login(e) {
       e.preventDefault();
       var username = document.getElementById("username").value;
@@ -75,11 +82,14 @@
         .then((response) => response.json())
         .then((data) => {
           // Traiter la réponse de la requête
+          localStorage.setItem("logged", JSON.stringify(data));
+          window.location.href = "../index.html";
           console.log(data);
         })
         .catch((error) => {
           // Gérer les erreurs de la requête
           console.error("Erreur:", error);
+          alert("Nom ou mot de passe incorrect");
         });
     }
   </script>

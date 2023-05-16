@@ -46,11 +46,11 @@
             <img src="./res/profil.jpg" alt="" srcset="" class="profil" />
           </div>
           <div class="home">
-            <button>Se Connecter</button>
+            <button onclick="logout()">Se Déconnecter</button>
           </div>
         </div>
       </nav>
-      <main>
+      <main id="main">
         <div class="element">
           <div class="header">
             <div class="storie">
@@ -229,5 +229,89 @@
       </footer>
     </div>
   </body>
-  <script></script>
+  <script>
+    getFeeds();
+    function getFeeds() {
+      var userJSON = localStorage.getItem("logged");
+
+      // // Vérifier si la chaîne JSON existe
+      if (userJSON) {
+        //   // Convertir la chaîne JSON en objet
+        var user = JSON.parse(userJSON);
+        const queryString = new URLSearchParams(user).toString();
+        const url = `http://localhost:8000/feed?${queryString}`;
+
+        fetch(url, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            // Traiter la réponse de la requête
+            const container = document.getElementById("main");
+            console.log(data);
+            data.feed.forEach((item) => {
+              // Créer un nouvel élément div pour chaque élément de la liste
+              const element = document.createElement("div");
+              element.classList.add("element");
+
+              // Effectuer le rendu des autres éléments à l'intérieur de l'élément div
+              element.innerHTML = `
+        <div class="post-header">
+          <img src="${item.profil}" />
+          <div class="end">${item.username}</div>
+        </div>
+        <div class="divider"></div>
+        <div class="post-body">
+          <p class="post-text">${item.text}</p>
+          <img src="${item.image}" class="post-image" />
+        </div>
+        <div class="post-footer">
+          <div class="like">LIKE ${item.likes}</div>
+        </div>
+      `;
+
+              // Ajouter l'élément div au conteneur parent
+              container.appendChild(element);
+            });
+          })
+          .catch((error) => {
+            // Gérer les erreurs de la requête
+            console.log(error);
+            // alert("Nom ou mot de passe incorrect");
+          });
+      } else {
+        window.location.href = "login/login.html";
+      }
+    }
+    function logout() {
+      var userJSON = localStorage.getItem("logged");
+
+      var user = JSON.parse(userJSON);
+
+      const url = "http://localhost:8000/logout";
+
+      fetch(url, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(user),
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log(data);
+          localStorage.removeItem("logged");
+          window.location.href = "login/login.html";
+        })
+        .catch((error) => {
+          // Gérer les erreurs de la requête
+          console.log(error);
+          // alert("Nom ou mot de passe incorrect");
+          // <a href="https://imgbb.com/"><img src="https://i.ibb.co/YywB5hp/carde.png" alt="carde" border="0"></a><br /><a target='_blank' href='https://whatsmyscreenresolution.com/'>how to find out how many pixels your screen is</a><br />
+        });
+    }
+  </script>
 </html>
