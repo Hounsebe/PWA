@@ -5,6 +5,7 @@ from uuid import uuid4
 from aiohttp import web
 import aiohttp_cors
 
+
 class FacebookServer:
     def __init__(self):
         self.app = web.Application()
@@ -28,7 +29,7 @@ class FacebookServer:
                 expose_headers="*",
                 allow_headers="*",
             )
-            })
+        })
 
         for route in list(self.app.router.routes()):
             cors.add(route)
@@ -41,17 +42,18 @@ class FacebookServer:
 
         username = data['username']
         password = data['password']
-        hashed_password = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt())
+        hashed_password = bcrypt.hashpw(
+            password.encode('utf-8'), bcrypt.gensalt())
         print(hashed_password)
         async with self.db_pool.acquire() as conn:
-               async with conn.cursor() as cur:
-                      query = "SELECT * FROM user WHERE username = %s AND password = %s"
-                      await cur.execute(query, (username, password))
-                      result = await cur.fetchone()
+            async with conn.cursor() as cur:
+                query = "SELECT * FROM user WHERE username = %s AND password = %s"
+                await cur.execute(query, (username, password))
+                result = await cur.fetchone()
         if result:
             session_id = str(uuid4())
             self.sessions[session_id] = username
-            return web.json_response({'session_id': session_id,'name': result[1]+ ' '+ result[2], 'profil':result[3]})
+            return web.json_response({'session_id': session_id, 'name': result[1] + ' ' + result[2], 'profil': result[3]})
         else:
             return web.HTTPUnauthorized()
 
@@ -96,7 +98,7 @@ class FacebookServer:
         for result in results:
             post = {
                 'username': result['nom']+' '+result['prenom'],
-                'profil':result['profil'],
+                'profil': result['profil'],
                 'text': result['text'],
                 'image': result['image'],
                 'likes': result['likes']
@@ -104,8 +106,6 @@ class FacebookServer:
             feed.append(post)
 
         return web.json_response({'feed': feed})
-
-        # Retrieve and return the feed (e.g., posts from friends)
 
     async def create_post(self, request: web.Request) -> web.Response:
         data = await request.json()
@@ -122,12 +122,11 @@ class FacebookServer:
         self.posts.append(post)
 
         return web.json_response({'message': 'Post created successfully'})
-    
-    
 
     def run(self):
-        web.run_app(self.initialize(),host='127.0.0.1', port=8000)
-        
+        web.run_app(self.initialize(), host='127.0.0.1', port=8000)
+
+
 if __name__ == '__main__':
     server = FacebookServer()
     server.run()
