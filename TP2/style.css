@@ -435,8 +435,8 @@ footer > .creategroup > span {
   nav > .center {
     display: none;
   }
-  nav > .Right {
-  }
+  /* nav > .Right {
+  } */
   nav > .Right > .contentInput {
     display: none;
   }
